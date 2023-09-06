@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { styled } from "styled-components";
 import { validate } from "email-validator";
 import Navbar from "../components/Navbar";
@@ -6,13 +6,35 @@ import bgImage from "../assets/home-background.jpg";
 import arrow from "../assets/arrow.png";
 import cross from "../assets/cross.png";
 
+const Message = ({ email }) => {
+  if (email.length > 0 && validate(email) === false) {
+    return <div>Please enter a valid email address.</div>;
+  }
+  if (email.length === 0) {
+    return <div>Email is required</div>;
+  }
+  return null;
+};
+
 const Home = () => {
   const [email, setEmail] = useState("");
-  const isEmailValid = useRef(validate(email));
-  useEffect(() => {
-    isEmailValid.current = validate(email);
-  });
-  console.log(email, isEmailValid.current);
+  let visibility = useRef(false);
+  // let visibility = { current: false };
+  console.log(visibility.current);
+
+  const checkCondition = () => {
+    if (email.length === 0) {
+      visibility.current = true;
+      return;
+    }
+    if (email.length > 0 && !validate(email)) {
+      visibility.current = true;
+      return;
+    }
+    visibility.current = false;
+  };
+  checkCondition();
+  console.log(visibility.current);
   return (
     <Container $backgroundImage={bgImage}>
       <Navbar />
@@ -41,9 +63,9 @@ const Home = () => {
             <SubmitText>Get Started</SubmitText>
             <Arrow src={arrow} />
           </Submit>
-          <Validate $visible={isEmailValid.current}>
+          <Validate $present={visibility.current}>
             <Cross src={cross} />
-            {isEmailValid.current && "Please enter a valid email address."}
+            <Message email={email} />
           </Validate>
         </Form>
       </FaceTag>
@@ -161,7 +183,7 @@ const Validate = styled.div`
   font-weight: 500;
   top: 6em;
   left: 30.2vw;
-  visibility: ${(props) => (!props.$visible ? "visible" : "hidden")};
+  visibility: ${(props) => (props.$present ? "visible" : "hidden")};
 `;
 const Cross = styled.img`
   margin-right: 0.3em;
