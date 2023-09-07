@@ -2,9 +2,12 @@ import { useState, useRef } from "react";
 import { styled } from "styled-components";
 import { validate } from "email-validator";
 import Navbar from "../components/Navbar";
+import Tv from "../components/Tv";
 import bgImage from "../assets/home-background.jpg";
 import arrow from "../assets/arrow.png";
 import cross from "../assets/cross.png";
+import tv from "../assets/tv.png";
+import video from "../assets/video/video.mp4";
 
 const Message = ({ email }) => {
   if (email.length > 0 && validate(email) === false) {
@@ -19,8 +22,6 @@ const Message = ({ email }) => {
 const Home = () => {
   const [email, setEmail] = useState("");
   let visibility = useRef(false);
-  // let visibility = { current: false };
-  console.log(visibility.current);
 
   const checkCondition = () => {
     if (email.length === 0) {
@@ -33,47 +34,98 @@ const Home = () => {
     }
     visibility.current = false;
   };
+
   checkCondition();
-  console.log(visibility.current);
+  // console.log(visibility.current);
   return (
-    <Container $backgroundImage={bgImage}>
-      <Navbar />
-      <FaceTag>
-        <F1>
-          The biggest Indian hits. The best Indian stories. <br />
-          All streaming here.
-        </F1>
-        <F2>Watch anywhere. Cancel anytime.</F2>
-        <F3>
-          Ready to watch? Enter your email to create or restart your membership.
-        </F3>
-        <Form>
-          <EmailInput
-            type="text"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            required
+    <Container>
+      <TopContainer $backgroundImage={bgImage}>
+        <Navbar />
+        <FaceTag>
+          <F1>
+            The biggest Indian hits. The best Indian stories. <br />
+            All streaming here.
+          </F1>
+          <F2>Watch anywhere. Cancel anytime.</F2>
+          <F3>
+            Ready to watch? Enter your email to create or restart your
+            membership.
+          </F3>
+          <Form>
+            <EmailInput
+              type="text"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              required
+            />
+            <MagicPlaceholder placeholder="Email address" className="magic">
+              Email address
+            </MagicPlaceholder>
+            <Submit type="submit">
+              <SubmitText>Get Started</SubmitText>
+              <Arrow src={arrow} />
+            </Submit>
+            <Validate $present={visibility.current}>
+              <Cross src={cross} />
+              <Message email={email} />
+            </Validate>
+          </Form>
+        </FaceTag>
+      </TopContainer>
+      <CenterContainer>
+        <C1>
+          <Tv
+            tv={tv}
+            xCoord="50vw"
+            yCoord="5vw"
+            height="26em"
+            width="35em"
+            url={video}
           />
-          <MagicPlaceholder placeholder="Email address" className="magic">
-            Email address
-          </MagicPlaceholder>
-          <Submit type="submit">
-            <SubmitText>Get Started</SubmitText>
-            <Arrow src={arrow} />
-          </Submit>
-          <Validate $present={visibility.current}>
-            <Cross src={cross} />
-            <Message email={email} />
-          </Validate>
-        </Form>
-      </FaceTag>
+          <Para>
+            <Heading>Enjoy on your TV</Heading>
+            <Content>
+              Watch on smart TVs, PlayStation, Xbox, Chromecast,
+              <br /> Apple TV, Blu-ray players and more.
+            </Content>
+          </Para>
+        </C1>
+        <C2></C2>
+        <C3></C3>
+        <C4></C4>
+      </CenterContainer>
     </Container>
   );
 };
-
 const Container = styled.div`
+  /* border: 10px solid red; */
+`;
+const CenterContainer = styled.div``;
+const C1 = styled.div`
+  color: white;
+  height: 85vh;
+  border-bottom: 9px solid #1d1c1c;
+  background-color: black;
+`;
+const Para = styled.div`
+  /* border: 1px solid pink; */
+  margin-top: -11em;
+  width: 50vw;
+  text-align: justify;
+  padding-left: 11em;
+`;
+const Heading = styled.h1`
+  font-size: 3em;
+`;
+const Content = styled.div`
+  font-size: 1.4em;
+`;
+const C2 = styled(C1)``;
+const C3 = styled(C1)``;
+const C4 = styled(C1)``;
+const TopContainer = styled.div`
   height: 101.8vh;
   background-image: ${(props) => `url(${props.$backgroundImage})`};
   background-size: fill;
@@ -82,6 +134,8 @@ const Container = styled.div`
   -moz-box-shadow: inset 0px 20px 120px 61px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px 20px 120px 61px rgba(0, 0, 0, 0.75);
   z-index: 1;
+  /* border-bottom: 8px solid #1d1c1c; */
+  border-bottom: 9px solid #5c5b5b;
 `;
 
 const FaceTag = styled.div`
@@ -95,6 +149,8 @@ const FaceTag = styled.div`
 
 const F1 = styled.div`
   text-align: center;
+  /* border: 1px solid white; */
+  pointer-events: none;
   /* font-size: 100%; */
 `;
 const F2 = styled.div`
@@ -117,14 +173,14 @@ const Form = styled.form`
   /* background-color: peachpuff; */
 `;
 const EmailInput = styled.input`
-  color: white;
+  color: #e6e3e3f5;
   padding: 0.6em;
-  padding-top: 1.3em;
+  padding-top: 1.2em;
   padding-left: 0.8em;
   width: 22em;
   position: relative;
   left: -0.8em;
-  border: 1px solid red;
+  border: 1px solid gray;
   background-color: rgb(10, 10, 10, 0.6);
   border-radius: 0.3em;
   font-size: 0.4em;
