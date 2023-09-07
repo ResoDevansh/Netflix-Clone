@@ -8,6 +8,9 @@ import arrow from "../assets/arrow.png";
 import cross from "../assets/cross.png";
 import tv from "../assets/tv.png";
 import video from "../assets/video/video.mp4";
+import image from "../assets/c2image.jpg";
+import stranger from "../assets/stranger.png";
+import gif from "../assets/gif/gif";
 
 const Message = ({ email }) => {
   if (email.length > 0 && validate(email) === false) {
@@ -84,24 +87,44 @@ const Home = () => {
             width="35em"
             url={video}
           />
-          <Para>
-            <Heading>Enjoy on your TV</Heading>
-            <Content>
+          <Para1>
+            <Heading1>Enjoy on your TV</Heading1>
+            <Content1>
               Watch on smart TVs, PlayStation, Xbox, Chromecast,
               <br /> Apple TV, Blu-ray players and more.
-            </Content>
-          </Para>
+            </Content1>
+          </Para1>
         </C1>
-        <C2></C2>
+        <C2>
+          <Image2 src={image} />
+          <Para2>
+            <Heading2>
+              Download your shows
+              <br /> to watch offline
+            </Heading2>
+            <Content2>
+              Save your favourites easily and always have something <br />
+              to watch.
+            </Content2>
+          </Para2>
+          <Dialog>
+            <ImageSmall src={stranger} />
+            <DialogSmall>
+              <Box>
+                <Title>Stranger Things</Title>
+                <Subtitle>Downloading...</Subtitle>
+              </Box>
+            </DialogSmall>
+            <Gif src={gif[0]} />
+          </Dialog>
+        </C2>
         <C3></C3>
         <C4></C4>
       </CenterContainer>
     </Container>
   );
 };
-const Container = styled.div`
-  /* border: 10px solid red; */
-`;
+const Container = styled.div``;
 const CenterContainer = styled.div``;
 const C1 = styled.div`
   color: white;
@@ -109,20 +132,75 @@ const C1 = styled.div`
   border-bottom: 9px solid #1d1c1c;
   background-color: black;
 `;
-const Para = styled.div`
+const Para1 = styled.div`
   /* border: 1px solid pink; */
   margin-top: -11em;
   width: 50vw;
   text-align: justify;
   padding-left: 11em;
 `;
-const Heading = styled.h1`
+const Heading1 = styled.h1`
   font-size: 3em;
 `;
-const Content = styled.div`
+const Content1 = styled.div`
   font-size: 1.4em;
 `;
 const C2 = styled(C1)``;
+const Image2 = styled.img`
+  height: 28em;
+  width: 20em;
+  margin-left: 19em;
+  margin-top: 4em;
+  object-fit: cover;
+  z-index: 1;
+  position: relative;
+`;
+const Heading2 = styled(Heading1)``;
+const Para2 = styled(Para1)`
+  padding: 0;
+  margin-left: 47.5em;
+  margin-top: -22em;
+`;
+const Content2 = styled(Content1)``;
+const Dialog = styled.div`
+  border: 1px solid white;
+  width: 20vw;
+  height: 6.5em;
+  border-radius: 1em;
+  z-index: 100;
+  position: relative;
+  margin-left: 19em;
+  background-color: black;
+  display: flex;
+  align-items: center;
+`;
+const ImageSmall = styled.img`
+  object-fit: cover;
+  height: 5em;
+
+  margin-left: 1em;
+`;
+const DialogSmall = styled.div`
+  margin-left: 0.7em;
+  min-width: 8em;
+`;
+const Gif = styled.img`
+  border: 1px solid transparent;
+  height: 3.3em;
+  margin-left: 2.6em;
+`;
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Title = styled.div`
+  font-size: 0.9em;
+  font-weight: 500;
+`;
+const Subtitle = styled.div`
+  font-size: 0.8em;
+  color: #0071eb;
+`;
 const C3 = styled(C1)``;
 const C4 = styled(C1)``;
 const TopContainer = styled.div`
