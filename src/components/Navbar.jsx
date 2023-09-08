@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 import logo from "../assets/netflix-logo.png";
 import globe from "../assets/globe-icon.jpg";
 
@@ -17,9 +18,10 @@ const Navbar = () => {
           </LanguageButton>
         </Label>
       </LanguageSelector>
-      <SignIn as="a" href="#">
+      <SignIn to="login">Sign In</SignIn>
+      {/* <SignIn as="a" href="">
         Sign In
-      </SignIn>
+      </SignIn> */}
     </Container>
   );
 };
@@ -73,7 +75,7 @@ const LanguageSelector = styled.div`
   border-radius: 0.3em;
 `;
 const Label = styled.label``;
-const SignIn = styled.button`
+const SignIn = styled(Link)`
   padding: 0.3em 1em;
   background-color: red;
   color: white;
