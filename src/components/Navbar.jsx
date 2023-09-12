@@ -19,9 +19,6 @@ const Navbar = () => {
         </Label>
       </LanguageSelector>
       <SignIn to="login">Sign In</SignIn>
-      {/* <SignIn as="a" href="">
-        Sign In
-      </SignIn> */}
     </Container>
   );
 };

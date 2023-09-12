@@ -39,7 +39,7 @@ const Home = () => {
   };
 
   checkCondition();
-  // console.log(visibility.current);
+
   return (
     <Container>
       <TopContainer $backgroundImage={bgImage}>

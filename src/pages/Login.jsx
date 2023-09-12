@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import bgImage from "../assets/login-background.jpg";
 import logo from "../assets/netflix-logo.png";
 import globe from "../assets/globe-icon.jpg";
+// import auth from "../firebase/firebase";
 
 const Login = () => {
+  // console.log(auth);
   return (
     <Container>
       <Background $bgImage={bgImage}>
-        <Logo src={logo}></Logo>
+        <ToHome to="/in" alt={""}>
+          <Logo src={logo}></Logo>
+        </ToHome>
         <Dialog>
           <Title className="dialog-content">Sign In</Title>
           <Form className="dialog-content">
@@ -63,15 +67,25 @@ const Login = () => {
 const Container = styled.div``;
 const Background = styled.div`
   background-image: ${(props) => `url(${props.$bgImage})`};
-  /* height: 150vh;  */
+`;
+const ToHome = styled(Link)`
+  text-decoration: none;
+  display: inline-block;
+  margin: 20px;
+  height: 6em;
+  margin: -1em 0 0 1.6em;
+  z-index: 111;
+  position: relative;
 `;
 const Logo = styled.img`
+  position: relative;
+  z-index: -1;
+  pointer-events: none;
   object-fit: cover;
   height: 7em;
-  margin: -1em 0 0 1.6em;
 `;
 const Dialog = styled.div`
-  /* border: 1px solid yellow; */
+  pointer-events: all;
   width: 29vw;
   margin-left: 34.7vw;
   padding: 4em;
@@ -90,12 +104,21 @@ const Form = styled.form`
   flex-direction: column;
 `;
 const Email = styled.input`
+  &:focus {
+    border: transparent;
+    outline: none;
+    color: white;
+  }
   padding: 1.2em;
   border: transparent;
   background-color: #2c2b2b;
   margin-bottom: 1em;
 `;
 const Password = styled.input`
+  &:focus {
+    outline: none;
+    color: white;
+  }
   padding: 1.2em;
   border: transparent;
   background-color: #2c2b2b;
