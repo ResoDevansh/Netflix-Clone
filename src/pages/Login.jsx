@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import bgImage from "../assets/login-background.jpg";
 import logo from "../assets/netflix-logo.png";
 import globe from "../assets/globe-icon.jpg";
+// import { useContext } from "react";
+import { useMyContext } from "../utils/Provider";
 // import auth from "../firebase/firebase";
 
 const Login = () => {
-  // console.log(auth);
+  const signUpEmail = useMyContext();
+  // console.log(signUpEmail.current);
   return (
     <Container>
       <Background $bgImage={bgImage}>
@@ -30,8 +33,8 @@ const Login = () => {
               New to Netflix? <SimpleText>Sign up now.</SimpleText>
             </Line1>
             <Line2>
-              This page is protected by Google reCAPTCHA to ensure you're not a
-              bot. <LearnMore>Learn more.</LearnMore>
+              This page is protected by Google reCAPTCHA to ensure you&apos;re
+              not a bot. <LearnMore>Learn more.</LearnMore>
             </Line2>
           </Para>
         </Dialog>

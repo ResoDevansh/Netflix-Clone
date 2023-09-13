@@ -1,6 +1,10 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
+// import { Routes, Route } from "react-router-dom";
 import { styled } from "styled-components";
 import { validate } from "email-validator";
+import { Link } from "react-router-dom";
+import { useMyContext } from "../utils/Provider";
+// import SignUp from "./SignUp";
 import Navbar from "../components/Navbar";
 import Tv from "../components/Tv";
 import bgImage from "../assets/home-background.jpg";
@@ -13,25 +17,29 @@ import stranger from "../assets/stranger.png";
 import gif from "../assets/gif/gif";
 
 const Message = ({ email }) => {
-  if (email.length > 0 && validate(email) === false) {
+  if (email?.length > 0 && validate(email) === false) {
     return <div>Please enter a valid email address.</div>;
   }
-  if (email.length === 0) {
+  if (email?.length === 0) {
     return <div>Email is required</div>;
   }
   return null;
 };
 
 const Home = () => {
-  const [email, setEmail] = useState("");
+  const globalState = useMyContext();
+  const enteredEmail = globalState.enteredEmail;
+  const setEnteredEmail = globalState.setEnteredEmail;
+  console.log(enteredEmail);
+
   let visibility = useRef(false);
 
   const checkCondition = () => {
-    if (email.length === 0) {
+    if (enteredEmail?.length === 0) {
       visibility.current = true;
       return;
     }
-    if (email.length > 0 && !validate(email)) {
+    if (enteredEmail?.length > 0 && !validate(enteredEmail)) {
       visibility.current = true;
       return;
     }
@@ -57,22 +65,27 @@ const Home = () => {
           <Form>
             <EmailInput
               type="text"
-              value={email}
+              value={enteredEmail}
               onChange={(e) => {
-                setEmail(e.target.value);
+                setEnteredEmail(e.target.value);
               }}
               required
             />
             <MagicPlaceholder placeholder="Email address" className="magic">
               Email address
             </MagicPlaceholder>
-            <Submit type="submit">
-              <SubmitText>Get Started</SubmitText>
-              <Arrow src={arrow} />
-            </Submit>
+            <ToSignUp
+              $visibility={visibility.current}
+              to={!visibility.current && `/signup/password?locale=en-IN`}
+            >
+              <Submit type="submit">
+                <SubmitText>Get Started</SubmitText>
+                <Arrow src={arrow} />
+              </Submit>
+            </ToSignUp>
             <Validate $present={visibility.current}>
               <Cross src={cross} />
-              <Message email={email} />
+              <Message email={enteredEmail} />
             </Validate>
           </Form>
         </FaceTag>
@@ -271,12 +284,14 @@ const EmailInput = styled.input`
   }
 `;
 const Submit = styled.button`
+  visibility: visible;
   display: flex;
+  height: 100%;
   align-items: center;
-  padding: 0.7em 1.3em;
+  padding: 0.7em 2em;
   border-radius: 0.3em;
   cursor: pointer;
-  background-color: red;
+  background-color: rgb(229, 9, 20);
   text-decoration: none;
   border: transparent;
   color: white;
@@ -284,8 +299,14 @@ const Submit = styled.button`
   &:hover {
     background-color: #d90505;
   }
+`;
+const ToSignUp = styled(Link)`
+  visibility: ${(props) => (props.$visibility ? "visible" : "hidden")};
+  text-decoration: none;
+  justify-content: center;
   position: relative;
-  left: -0.5em;
+  left: -0.1em;
+  align-items: center;
 `;
 const Arrow = styled.img`
   height: 1.5em;
@@ -325,4 +346,5 @@ const Cross = styled.img`
   border: 1px solid red;
   border-radius: 50%;
 `;
+
 export default Home;
