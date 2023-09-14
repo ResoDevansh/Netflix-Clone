@@ -6,7 +6,7 @@ import globe from "../assets/globe-icon.jpg";
 const Navbar = () => {
   return (
     <Container>
-      <LogoWrapper>
+      <LogoWrapper className="img-wrapper">
         <Logo src={logo} alt="image not found"></Logo>
       </LogoWrapper>
       <LanguageSelector>
@@ -23,7 +23,7 @@ const Navbar = () => {
   );
 };
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -33,16 +33,19 @@ const Container = styled.div`
   filter: brightness(100%);
   /* background-color: blueviolet; */
 `;
-const Logo = styled.img`
+
+export const Logo = styled.img`
   height: 15vh;
   /* background-color: black; */
 `;
-const LogoWrapper = styled.div`
+Logo.displayName = "logo";
+export const LogoWrapper = styled.div`
   display: flex;
   position: relative;
   left: -2.5em;
 `;
-const LanguageButton = styled.select`
+
+export const LanguageButton = styled.select`
   overflow: hidden;
   font-size: 1em;
   border: transparent;
@@ -51,17 +54,20 @@ const LanguageButton = styled.select`
   color: white;
   border-radius: 0.3em;
 `;
-const Option = styled.option`
+
+export const Option = styled.option`
   overflow: hidden;
 `;
-const GlobeIcon = styled.img`
+
+export const GlobeIcon = styled.img`
   color: white;
   background-color: white;
   height: 1.2em;
   position: absolute;
   left: 0.6em;
 `;
-const LanguageSelector = styled.div`
+
+export const LanguageSelector = styled.div`
   display: flex;
   position: relative;
   left: 22em;
@@ -71,8 +77,10 @@ const LanguageSelector = styled.div`
   border: 1px solid white;
   border-radius: 0.3em;
 `;
-const Label = styled.label``;
-const SignIn = styled(Link)`
+
+export const Label = styled.label``;
+
+export const SignIn = styled(Link)`
   padding: 0.3em 1em;
   background-color: red;
   color: white;
@@ -87,4 +95,5 @@ const SignIn = styled(Link)`
     background-color: #d90505;
   }
 `;
+
 export default Navbar;
