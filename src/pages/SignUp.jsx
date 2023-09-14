@@ -1,4 +1,4 @@
-import { useMyContext } from "../utils/Provider";
+import { useMyContext } from "../utils/utils";
 
 const SignUp = () => {
   const globalState = useMyContext();

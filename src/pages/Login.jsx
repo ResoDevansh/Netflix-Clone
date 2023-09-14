@@ -1,11 +1,9 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import { useMyContext } from "../utils/utils";
 import bgImage from "../assets/login-background.jpg";
 import logo from "../assets/netflix-logo.png";
 import globe from "../assets/globe-icon.jpg";
-// import { useContext } from "react";
-import { useMyContext } from "../utils/Provider";
-// import auth from "../firebase/firebase";
 
 const Login = () => {
   const signUpEmail = useMyContext();

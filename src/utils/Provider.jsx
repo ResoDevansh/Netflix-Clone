@@ -1,14 +1,15 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { MyContext } from "./utils";
 
-const MyContext = createContext();
+// const MyContext = createContext();
 
 const UserSignUp = ({ children }) => {
   const [enteredEmail, setEnteredEmail] = useState(
-    JSON.parse(localStorage.getItem("enteredEmail")) || ""
+    JSON.parse(sessionStorage.getItem("enteredEmail")) || ""
   );
 
   useEffect(() => {
-    localStorage.setItem("enteredEmail", JSON.stringify(enteredEmail));
+    sessionStorage.setItem("enteredEmail", JSON.stringify(enteredEmail));
   }, [enteredEmail]);
 
   // console.log(enteredEmail);
@@ -19,8 +20,8 @@ const UserSignUp = ({ children }) => {
   );
 };
 
-export const useMyContext = () => {
-  return useContext(MyContext);
-};
+// export const useMyContext = () => {
+//   return useContext(MyContext);
+// };
 
 export default UserSignUp;

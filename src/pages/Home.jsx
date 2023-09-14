@@ -1,10 +1,8 @@
-import { useRef } from "react";
-// import { Routes, Route } from "react-router-dom";
+import { useRef, memo } from "react";
 import { styled } from "styled-components";
 import { validate } from "email-validator";
 import { Link } from "react-router-dom";
-import { useMyContext } from "../utils/Provider";
-// import SignUp from "./SignUp";
+import { useMyContext } from "../utils/utils";
 import Navbar from "../components/Navbar";
 import Tv from "../components/Tv";
 import bgImage from "../assets/home-background.jpg";
@@ -26,11 +24,9 @@ const Message = ({ email }) => {
   return null;
 };
 
-const Home = () => {
-  const globalState = useMyContext();
-  const enteredEmail = globalState.enteredEmail;
-  const setEnteredEmail = globalState.setEnteredEmail;
-  console.log(enteredEmail);
+const Home = memo(() => {
+  const { enteredEmail, setEnteredEmail } = useMyContext();
+  console.log("home rerender");
 
   let visibility = useRef(false);
 
@@ -136,7 +132,7 @@ const Home = () => {
       </CenterContainer>
     </Container>
   );
-};
+});
 const Container = styled.div``;
 const CenterContainer = styled.div``;
 const C1 = styled.div`
@@ -347,4 +343,5 @@ const Cross = styled.img`
   border-radius: 50%;
 `;
 
+Home.displayName = "Home";
 export default Home;
