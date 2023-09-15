@@ -72,7 +72,7 @@ const Home = memo(() => {
             </MagicPlaceholder>
             <ToSignUp
               $visibility={visibility.current}
-              to={!visibility.current && `/signup/registration?locale=en-IN`}
+              to={!visibility.current && `/signup/password?locale=en-IN`}
             >
               <Submit type="submit">
                 <SubmitText>Get Started</SubmitText>

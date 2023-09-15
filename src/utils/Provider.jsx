@@ -7,6 +7,7 @@ const UserSignUp = ({ children }) => {
   const [enteredEmail, setEnteredEmail] = useState(
     JSON.parse(sessionStorage.getItem("enteredEmail")) || ""
   );
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     sessionStorage.setItem("enteredEmail", JSON.stringify(enteredEmail));
@@ -14,7 +15,9 @@ const UserSignUp = ({ children }) => {
 
   // console.log(enteredEmail);
   return (
-    <MyContext.Provider value={{ enteredEmail, setEnteredEmail }}>
+    <MyContext.Provider
+      value={{ enteredEmail, setEnteredEmail, password, setPassword }}
+    >
       {children}
     </MyContext.Provider>
   );

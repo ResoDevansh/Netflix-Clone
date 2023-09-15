@@ -14,7 +14,7 @@ const Step1 = () => {
         <SignInLink>Sign In</SignInLink>
       </Navbar>
       <Routes>
-        <Route path="test" element={<RegForm />} />
+        <Route path="" element={<RegForm />} />
       </Routes>
       <Footer>
         <L1>
@@ -53,13 +53,13 @@ const Container = styled.div`
 const Navbar = styled.nav`
   display: flex;
   align-items: center;
+  border-bottom: 1px solid lightgray;
 `;
 const LogoLink = styled(Link)`
   text-decoration: none;
   outline: 0;
   line-height: 0;
   margin: -0.9em 0 0 1.8em;
-  padding: 0;
 `;
 const Logo = styled.img`
   height: 7.2em;
