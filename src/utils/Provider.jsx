@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MyContext } from "./utils";
+import PropTypes from "prop-types";
 
 // const MyContext = createContext();
 
@@ -23,8 +24,7 @@ const UserSignUp = ({ children }) => {
   );
 };
 
-// export const useMyContext = () => {
-//   return useContext(MyContext);
-// };
+UserSignUp.displayName = "RegForm";
+UserSignUp.propTypes = { children: PropTypes.node };
 
 export default UserSignUp;

@@ -8,7 +8,7 @@ const Step1 = () => {
   return (
     <Container>
       <Navbar>
-        <LogoLink>
+        <LogoLink to="/in">
           <Logo src={logo} />
         </LogoLink>
         <SignInLink>Sign In</SignInLink>

@@ -1,8 +1,10 @@
+import { memo } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMyContext } from "../utils/utils";
+import PropTypes from "prop-types";
 
-const RegForm = () => {
+const RegForm = memo(() => {
   const { enteredEmail, password, setPassword } = useMyContext();
   console.log(password);
   return (
@@ -42,7 +44,10 @@ const RegForm = () => {
       </Dialog>
     </Container>
   );
-};
+});
+
+RegForm.displayName = "RegForm";
+RegForm.propTypes = { children: PropTypes.node };
 
 const Container = styled.div`
   height: 100%;
@@ -88,6 +93,7 @@ const Forget = styled(Link)`
   display: inline-block;
   margin-top: 0.8em;
   position: relative;
+  color: #0071eb;
   &:after {
     transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
     position: absolute;
@@ -97,7 +103,7 @@ const Forget = styled(Link)`
     display: inline-block;
     width: 100%;
     visibility: hidden;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #0071eb;
   }
   &:hover {
     &:after {
