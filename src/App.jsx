@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MyContext from "./utils/Provider";
+import DataRoot from "./utils/Provider";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Step1 from "./pages/Step1";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   return (
     <Router>
-      <MyContext>
+      <DataRoot>
         <Routes>
           <Route path="/in/login" element={<Login />} />
           <Route path="/in/" element={<Home />} />
-          <Route path="/signup/password/*" element={<Step1 />} />
+          <Route path="/signup/password/*" element={<SignUp />} />
         </Routes>
-      </MyContext>
+      </DataRoot>
     </Router>
   );
 };

@@ -4,7 +4,7 @@ import logo from "../assets/netflix-logo.png";
 import globe from "../assets/globe-icon.jpg";
 import RegForm from "./RegForm";
 
-const Step1 = () => {
+const SignUp = () => {
   return (
     <Container>
       <Navbar>
@@ -160,4 +160,4 @@ const LanguageSelector = styled.div`
   border-radius: 0.3em;
 `;
 const Label = styled.label``;
-export default Step1;
+export default SignUp;

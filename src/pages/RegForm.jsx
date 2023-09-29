@@ -1,12 +1,30 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../firebase/firebase";
 import { useMyContext } from "../utils/utils";
 import PropTypes from "prop-types";
 
 const RegForm = memo(() => {
-  const { enteredEmail, password, setPassword } = useMyContext();
-  console.log(password);
+  const { enteredEmail, password, setPassword, setUser } = useMyContext();
+  const navigate = useNavigate();
+  const SignUp = () => {
+    createUserWithEmailAndPassword(auth, enteredEmail, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(user.uid);
+        navigate("/in");
+      })
+      .catch((err) => {
+        const errCode = err.code;
+        const errMessage = err.message;
+        console.log(errCode, errMessage);
+      });
+  };
   return (
     <Container>
       <Dialog>
@@ -40,7 +58,7 @@ const RegForm = memo(() => {
             : "Password is required."}
         </Validate>
         <Forget>Forgot your password?</Forget>
-        <Submit>Submit</Submit>
+        <Submit onClick={SignUp}>Submit</Submit>
       </Dialog>
     </Container>
   );
@@ -54,8 +72,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Dialog = styled.div`
-  /* border: 1px solid black; */
+const Dialog = styled.form`
   margin: 2em auto;
   height: 80%;
   width: 50vw;
@@ -111,6 +128,7 @@ const Forget = styled(Link)`
     }
   }
 `;
+// const Submit = styled.button`
 const Submit = styled(Link)`
   display: inline-block;
   margin-top: 1em;

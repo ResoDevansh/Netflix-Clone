@@ -25,8 +25,9 @@ const Message = ({ email }) => {
 };
 
 const Home = memo(() => {
-  const { enteredEmail, setEnteredEmail } = useMyContext();
+  const { enteredEmail, setEnteredEmail, user } = useMyContext();
   console.log("home rerender");
+  console.log(user);
 
   let visibility = useRef(false);
 
@@ -49,6 +50,7 @@ const Home = memo(() => {
       <TopContainer $backgroundImage={bgImage}>
         <Navbar />
         <FaceTag>
+          {user ?? "not signed in"}
           <F1>
             The biggest Indian hits. The best Indian stories. <br />
             All streaming here.
